@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <script src="./SlotName.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="./angular.min.js"></script>
+  <title>Title of the document</title>
+
+</head>
+
+<body>
+  <div ng-app="myApp" ng-controller="mySymbol">
+    <table width="80%" border="0" cellspacing="0" cellpadding="0" align="center">
+      <tr>
+        <th colspan="2">
+          <table width="100%">
+            <tr>
+              <td width="100%">
+
+                <form method="post" id="search">
+                  <p>JSON:
+                    <textarea ng-model="jsonModel" id="myjson" style="width:100%;height:100px;"></textarea>
+                  </p>
+                  {"mode":"normal","now_balance":9699,"result":{"total_win":2,"roll":[8,7,0,4,8,3,8,10,7,8,10,6,7,3,6],"data":[{"line":12,"symbol":8,"grid":[0,4,6],"winning":2}]}}
+                  <p>遊戲名稱:
+                    <select ng-model="slot" ng-options="x.name for x in soltimg" style="width:50%">
+                      <option value="">--請選擇遊戲--</option>
+                    </select>
+                  </p>
+                  <br>
+                  <!-- <button type="button" onclick="secarch()" name="search">尋找</button> -->
+                </form>
+                <form id="analysis">
+                </form>
+              </td>
+            </tr>
+          </table>
+        </th>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <table width="100%" border="1" cellpadding="0" cellspacing="0" style="font-size:13px; border-collapse:collapse; text-align: center;"
+            bordercolor="#ccc">
+            <tr height="40">
+              <th colspan="12" align="center" style="color:#111; background:#04ace9;">Symbol對照表</th>
+            </tr>
+            <tr height="40">
+              <th width="8%" align="center" style="color:#111; background:#e0f0f6;">0</th>
+              <th width="8%" align="center" style="color:#111; background:#e0f0f6;">1</th>
+              <th width="8%" align="center" style="color:#111; background:#e0f0f6;">2</th>
+              <th width="8%" align="center" style="color:#111; background:#e0f0f6;">3</th>
+              <th width="8%" align="center" style="color:#111; background:#e0f0f6;">4</th>
+              <th width="8%" align="center" style="color:#111; background:#e0f0f6;">5</th>
+              <th width="8%" align="center" style="color:#111; background:#e0f0f6;">6</th>
+              <th width="8%" align="center" style="color:#111; background:#e0f0f6;">7</th>
+              <th width="8%" align="center" style="color:#111; background:#e0f0f6;">8</th>
+              <th width="8%" align="center" style="color:#111; background:#e0f0f6;">9</th>
+              <th width="8%" align="center" style="color:#111; background:#e0f0f6;">10</th>
+              <th width="8%" align="center" style="color:#111; background:#e0f0f6;">11</th>
+            </tr>
+            <tr id="slotImg">
+
+            </tr>
+
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%">
+          <p>
+            <table width="100%" border="1" cellpadding="0" cellspacing="0" style="font-size:13px; border-collapse:collapse; text-align: center;"
+              bordercolor="#ccc">
+              <tr height="150">
+                <td width="20%" align="center" style="color:#111; background:#e0f0f6;">
+                  <img src={{roll_2}} border="0" align="absmiddle" width="100%"> 
+                  <select id = "roll_2" ng-model="roll_2" style="width:50%">
+                    <option value={{slot.img_0}}>0</option>
+                    <option value={{slot.img_1}}>1</option>
+                    <option value={{slot.img_2}}>2</option>
+                    <option value={{slot.img_3}}>3</option>
+                    <option value={{slot.img_4}}>4</option>
+                    <option value={{slot.img_5}}>5</option>
+                    <option value={{slot.img_6}}>6</option>
+                    <option value={{slot.img_7}}>7</option>
+                    <option value={{slot.img_8}}>8</option>
+                    <option value={{slot.img_9}}>9</option>
+                    <option value={{slot.img_10}}>10</option>
+                    <option value={{slot.img_11}}>11</option>
+                  </select> 
+                </td>
+                <td width="20%" align="center" style="color:#111; background:#e0f0f6;">
+                  <img src={{roll_5}} border="0" align="absmiddle" width="100%">
+                  <select id = "roll_5" ng-model="roll_5" style="width:50%">
+                      <option value={{slot.img_0}}>0</option>
+                      <option value={{slot.img_1}}>1</option>
+                      <option value={{slot.img_2}}>2</option>
+                      <option value={{slot.img_3}}>3</option>
+                      <option value={{slot.img_4}}>4</option>
+                      <option value={{slot.img_5}}>5</option>
+                      <option value={{slot.img_6}}>6</option>
+                      <option value={{slot.img_7}}>7</option>
+                      <option value={{slot.img_8}}>8</option>
+                      <option value={{slot.img_9}}>9</option>
+                      <option value={{slot.img_10}}>10</option>
+                      <option value={{slot.img_11}}>11</option>
+                    </select> 
+                </td>
+                <td width="20%" align="center" style="color:#111; background:#e0f0f6;">
+                  <img src={{roll_8}} border="0" align="absmiddle" width="100%">
+                  <select id = "roll_8" ng-model="roll_8" style="width:50%">
+                      <option value={{slot.img_0}}>0</option>
+                      <option value={{slot.img_1}}>1</option>
+                      <option value={{slot.img_2}}>2</option>
+                      <option value={{slot.img_3}}>3</option>
+                      <option value={{slot.img_4}}>4</option>
+                      <option value={{slot.img_5}}>5</option>
+                      <option value={{slot.img_6}}>6</option>
+                      <option value={{slot.img_7}}>7</option>
+                      <option value={{slot.img_8}}>8</option>
+                      <option value={{slot.img_9}}>9</option>
+                      <option value={{slot.img_10}}>10</option>
+                      <option value={{slot.img_11}}>11</option>
+                    </select>
+                </td>
+                <td width="20%" align="center" style="color:#111; background:#e0f0f6;">
+                  <img src={{roll_11}} border="0" align="absmiddle" width="100%">
+                  <select id = "roll_11" ng-model="roll_11" style="width:50%">
+                      <option value={{slot.img_0}}>0</option>
+                      <option value={{slot.img_1}}>1</option>
+                      <option value={{slot.img_2}}>2</option>
+                      <option value={{slot.img_3}}>3</option>
+                      <option value={{slot.img_4}}>4</option>
+                      <option value={{slot.img_5}}>5</option>
+                      <option value={{slot.img_6}}>6</option>
+                      <option value={{slot.img_7}}>7</option>
+                      <option value={{slot.img_8}}>8</option>
+                      <option value={{slot.img_9}}>9</option>
+                      <option value={{slot.img_10}}>10</option>
+                      <option value={{slot.img_11}}>11</option>
+                    </select>  
+                </td>
+                <td width="20%" align="center" style="color:#111; background:#e0f0f6;">
+                  <img src={{roll_14}} border="0" align="absmiddle" width="100%">
+                  <select id = "roll_14" ng-model="roll_14" style="width:50%">
+                      <option value={{slot.img_0}}>0</option>
+                      <option value={{slot.img_1}}>1</option>
+                      <option value={{slot.img_2}}>2</option>
+                      <option value={{slot.img_3}}>3</option>
+                      <option value={{slot.img_4}}>4</option>
+                      <option value={{slot.img_5}}>5</option>
+                      <option value={{slot.img_6}}>6</option>
+                      <option value={{slot.img_7}}>7</option>
+                      <option value={{slot.img_8}}>8</option>
+                      <option value={{slot.img_9}}>9</option>
+                      <option value={{slot.img_10}}>10</option>
+                      <option value={{slot.img_11}}>11</option>
+                    </select>
+                </td>
+              </tr height="40">
+              <tr height="150">
+                <!-- <tbody id="game_form" > -->
+                <td width="20%" align="center" style="color:#111; background:#e0f0f6;">
+                  <img src={{roll_1}} border="0" align="absmiddle" width="100%">
+                  <select id = "roll_1" ng-model="roll_1" style="width:50%">
+                      <option value={{slot.img_0}}>0</option>
+                      <option value={{slot.img_1}}>1</option>
+                      <option value={{slot.img_2}}>2</option>
+                      <option value={{slot.img_3}}>3</option>
+                      <option value={{slot.img_4}}>4</option>
+                      <option value={{slot.img_5}}>5</option>
+                      <option value={{slot.img_6}}>6</option>
+                      <option value={{slot.img_7}}>7</option>
+                      <option value={{slot.img_8}}>8</option>
+                      <option value={{slot.img_9}}>9</option>
+                      <option value={{slot.img_10}}>10</option>
+                      <option value={{slot.img_11}}>11</option>
+                    </select>
+                </td>
+                <td width="20%" align="center" style="color:#111; background:#e0f0f6;">
+                  <img src={{roll_4}} border="0" align="absmiddle" width="100%">
+                  <select id = "roll_4" ng-model="roll_4" style="width:50%">
+                      <option value={{slot.img_0}}>0</option>
+                      <option value={{slot.img_1}}>1</option>
+                      <option value={{slot.img_2}}>2</option>
+                      <option value={{slot.img_3}}>3</option>
+                      <option value={{slot.img_4}}>4</option>
+                      <option value={{slot.img_5}}>5</option>
+                      <option value={{slot.img_6}}>6</option>
+                      <option value={{slot.img_7}}>7</option>
+                      <option value={{slot.img_8}}>8</option>
+                      <option value={{slot.img_9}}>9</option>
+                      <option value={{slot.img_10}}>10</option>
+                      <option value={{slot.img_11}}>11</option>
+                    </select>  
+                </td>
+                <td width="20%" align="center" style="color:#111; background:#e0f0f6;">
+                  <img src={{roll_7}} border="0" align="absmiddle" width="100%">
+                  <select id = "roll_7" ng-model="roll_7" style="width:50%">
+                      <option value={{slot.img_0}}>0</option>
+                      <option value={{slot.img_1}}>1</option>
+                      <option value={{slot.img_2}}>2</option>
+                      <option value={{slot.img_3}}>3</option>
+                      <option value={{slot.img_4}}>4</option>
+                      <option value={{slot.img_5}}>5</option>
+                      <option value={{slot.img_6}}>6</option>
+                      <option value={{slot.img_7}}>7</option>
+                      <option value={{slot.img_8}}>8</option>
+                      <option value={{slot.img_9}}>9</option>
+                      <option value={{slot.img_10}}>10</option>
+                      <option value={{slot.img_11}}>11</option>
+                    </select> 
+                </td>
+                <td width="20%" align="center" style="color:#111; background:#e0f0f6;">
+                  <img src={{roll_10}} border="0" align="absmiddle" width="100%">
+                  <select id = "roll_10" ng-model="roll_10" style="width:50%">
+                      <option value={{slot.img_0}}>0</option>
+                      <option value={{slot.img_1}}>1</option>
+                      <option value={{slot.img_2}}>2</option>
+                      <option value={{slot.img_3}}>3</option>
+                      <option value={{slot.img_4}}>4</option>
+                      <option value={{slot.img_5}}>5</option>
+                      <option value={{slot.img_6}}>6</option>
+                      <option value={{slot.img_7}}>7</option>
+                      <option value={{slot.img_8}}>8</option>
+                      <option value={{slot.img_9}}>9</option>
+                      <option value={{slot.img_10}}>10</option>
+                      <option value={{slot.img_11}}>11</option>
+                    </select> 
+                </td>
+                <td width="20%" align="center" style="color:#111; background:#e0f0f6;">
+                  <img src={{roll_13}} border="0" align="absmiddle" width="100%">
+                  <select id = "roll_13" ng-model="roll_13" style="width:50%">
+                      <option value={{slot.img_0}}>0</option>
+                      <option value={{slot.img_1}}>1</option>
+                      <option value={{slot.img_2}}>2</option>
+                      <option value={{slot.img_3}}>3</option>
+                      <option value={{slot.img_4}}>4</option>
+                      <option value={{slot.img_5}}>5</option>
+                      <option value={{slot.img_6}}>6</option>
+                      <option value={{slot.img_7}}>7</option>
+                      <option value={{slot.img_8}}>8</option>
+                      <option value={{slot.img_9}}>9</option>
+                      <option value={{slot.img_10}}>10</option>
+                      <option value={{slot.img_11}}>11</option>
+                    </select> 
+                </td>
+                <!-- </tbody> -->
+              </tr>
+              <tr height="150">
+                <td width="20%" align="center" style="color:#111; background:#e0f0f6;">
+                  <img src={{roll_0}} border="0" align="absmiddle" width="100%">
+                  <select id = "roll_0" ng-model="roll_0" style="width:50%">
+                      <option value={{slot.img_0}}>0</option>
+                      <option value={{slot.img_1}}>1</option>
+                      <option value={{slot.img_2}}>2</option>
+                      <option value={{slot.img_3}}>3</option>
+                      <option value={{slot.img_4}}>4</option>
+                      <option value={{slot.img_5}}>5</option>
+                      <option value={{slot.img_6}}>6</option>
+                      <option value={{slot.img_7}}>7</option>
+                      <option value={{slot.img_8}}>8</option>
+                      <option value={{slot.img_9}}>9</option>
+                      <option value={{slot.img_10}}>10</option>
+                      <option value={{slot.img_11}}>11</option>
+                    </select>  
+                </td>
+                <td width="20%" align="center" style="color:#111; background:#e0f0f6;">
+                  <img src={{roll_3}} border="0" align="absmiddle" width="100%">
+                  <select id = "roll_3" ng-model="roll_3" style="width:50%">
+                      <option value={{slot.img_0}}>0</option>
+                      <option value={{slot.img_1}}>1</option>
+                      <option value={{slot.img_2}}>2</option>
+                      <option value={{slot.img_3}}>3</option>
+                      <option value={{slot.img_4}}>4</option>
+                      <option value={{slot.img_5}}>5</option>
+                      <option value={{slot.img_6}}>6</option>
+                      <option value={{slot.img_7}}>7</option>
+                      <option value={{slot.img_8}}>8</option>
+                      <option value={{slot.img_9}}>9</option>
+                      <option value={{slot.img_10}}>10</option>
+                      <option value={{slot.img_11}}>11</option>
+                    </select> 
+                </td>
+                <td width="20%" align="center" style="color:#111; background:#e0f0f6;">
+                  <img src={{roll_6}} border="0" align="absmiddle" width="100%">
+                  <select id = "roll_6" ng-model="roll_6" style="width:50%">
+                      <option value={{slot.img_0}}>0</option>
+                      <option value={{slot.img_1}}>1</option>
+                      <option value={{slot.img_2}}>2</option>
+                      <option value={{slot.img_3}}>3</option>
+                      <option value={{slot.img_4}}>4</option>
+                      <option value={{slot.img_5}}>5</option>
+                      <option value={{slot.img_6}}>6</option>
+                      <option value={{slot.img_7}}>7</option>
+                      <option value={{slot.img_8}}>8</option>
+                      <option value={{slot.img_9}}>9</option>
+                      <option value={{slot.img_10}}>10</option>
+                      <option value={{slot.img_11}}>11</option>
+                    </select>
+                </td>
+                <td width="20%" align="center" style="color:#111; background:#e0f0f6;">
+                  <img src={{roll_9}} border="0" align="absmiddle" width="100%">
+                  <select id = "roll_9" ng-model="roll_9" style="width:50%">
+                      <option value={{slot.img_0}}>0</option>
+                      <option value={{slot.img_1}}>1</option>
+                      <option value={{slot.img_2}}>2</option>
+                      <option value={{slot.img_3}}>3</option>
+                      <option value={{slot.img_4}}>4</option>
+                      <option value={{slot.img_5}}>5</option>
+                      <option value={{slot.img_6}}>6</option>
+                      <option value={{slot.img_7}}>7</option>
+                      <option value={{slot.img_8}}>8</option>
+                      <option value={{slot.img_9}}>9</option>
+                      <option value={{slot.img_10}}>10</option>
+                      <option value={{slot.img_11}}>11</option>
+                    </select>
+                </td>
+                <td width="20%" align="center" style="color:#111; background:#e0f0f6;">
+                  <img src={{roll_12}} border="0" align="absmiddle" width="100%">
+                  <select id = "roll_12" ng-model="roll_12" style="width:50%">
+                      <option value={{slot.img_0}}>0</option>
+                      <option value={{slot.img_1}}>1</option>
+                      <option value={{slot.img_2}}>2</option>
+                      <option value={{slot.img_3}}>3</option>
+                      <option value={{slot.img_4}}>4</option>
+                      <option value={{slot.img_5}}>5</option>
+                      <option value={{slot.img_6}}>6</option>
+                      <option value={{slot.img_7}}>7</option>
+                      <option value={{slot.img_8}}>8</option>
+                      <option value={{slot.img_9}}>9</option>
+                      <option value={{slot.img_10}}>10</option>
+                      <option value={{slot.img_11}}>11</option>
+                    </select>
+                </td>
+
+              </tr>
+            </table>
+        </td>
+        <td width="100%" align="center">
+          <table width="80%" border="1" cellpadding="0" cellspacing="0" style="font-size:13px; border-collapse:collapse; text-align: center;"
+            bordercolor="#ccc">
+            <tr height="70">
+              <td width="40%">mode :</td>
+              <td width="60%">{{mode}}</td>
+            </tr>
+            <tr height="70">
+              <td width="40%">now_balance :</td>
+              <td width="60%">{{now_balance}}</td>
+            </tr>
+            <tr height="70">
+              <td width="40%">total_win :</td>
+              <td width="60%">{{total_win}}</td>
+            </tr>
+            <tr height="70">
+              <td width="40%">roll :</td>
+              <td width="60%">{{roll}}</td>
+            </tr>
+            <tr height="70">
+              <td width="40%">data :</td>
+              <td width="60%">{{data}}</td>
+            </tr>
+            <tr height="70">
+                <td width="40%"> <button onclick="symbol()" >輸出Roll :</button></td>
+                <td width="60%"><p id = "outRoll"></td>
+              </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
+
+<script>
+
+  angular.module('myApp', []) //綁定轉珠對照表
+    .controller('mySymbol', function ($scope) { //轉珠對照表
+      $scope.soltimg = [];
+      for (var i = 0; i < SlotName.length; i++) { //建立遊戲名稱選單
+        $scope.soltimg.push({
+          name: SlotName[i],
+          img_0: ' ./img/' + SlotName[i] + '/0.png', 
+          img_1: './img/' + SlotName[i] + '/1.png', 
+          img_2: './img/' + SlotName[i] + '/2.png', 
+          img_3: './img/' + SlotName[i] + '/3.png', 
+          img_4:  './img/' + SlotName[i] + '/4.png', 
+          img_5:  './img/' + SlotName[i] + '/5.png', 
+          img_6:  './img/' + SlotName[i] + '/6.png', 
+          img_7:  './img/' + SlotName[i] + '/7.png', 
+          img_8:  './img/' + SlotName[i] + '/8.png', 
+          img_9:  './img/' + SlotName[i] + '/9.png', 
+          img_10: './img/' + SlotName[i] + '/10.png',
+          img_11: './img/' + SlotName[i] + '/11.png',
+        });
+      }
+     
+
+      var msg = "";
+      $scope.$watch('jsonModel', function (newval) { //監聽jsonModel
+        $('#outRoll').html('');
+        msg = "" ;
+        try {
+          msg = JSON.parse(newval)
+        } catch (error) {
+        }
+        if (msg) {
+          if (msg.mode) { //顯示mode
+            $scope.mode = msg.mode;
+          } else {
+            $scope.mode = "JSON內沒有mode"
+          }
+
+          if (msg.now_balance) { //顯示now_balance
+            $scope.now_balance = msg.now_balance;
+          } else {
+            $scope.now_balance = "JSON內沒有now_balance"
+          }
+
+          if (msg.result.total_win) { //顯示total_win
+            $scope.total_win = msg.result.total_win;
+          } else {
+            $scope.total_win = "JSON內沒有total_win"
+          }
+
+          if (msg.result.data) { //顯示data
+            $scope.data = msg.result.data;
+          } else {
+            $scope.data = "JSON內沒有data"
+          }
+          if (msg.result.roll) { //顯示roll
+            if (msg.result.roll.length == 15) { //symbol數量是否正確
+              $scope.roll = msg.result.roll;
+            } else {
+              $scope.roll = msg.result.roll + " 錯誤:(少" + (15 - msg.result.roll.length) + "個 symbol)";
+            }
+            $scope.roll_0 = $scope.slot["img_"+msg.result.roll[0]];
+            $scope.roll_1 = $scope.slot["img_"+msg.result.roll[1]];
+            $scope.roll_2 = $scope.slot["img_"+msg.result.roll[2]];
+            $scope.roll_3 = $scope.slot["img_"+msg.result.roll[3]];
+            $scope.roll_4 = $scope.slot["img_"+msg.result.roll[4]];
+            $scope.roll_5 = $scope.slot["img_"+msg.result.roll[5]];
+            $scope.roll_6 = $scope.slot["img_"+msg.result.roll[6]];
+            $scope.roll_7 = $scope.slot["img_"+msg.result.roll[7]];
+            $scope.roll_8 = $scope.slot["img_"+msg.result.roll[8]];
+            $scope.roll_9 = $scope.slot["img_"+msg.result.roll[9]];
+            $scope.roll_10 = $scope.slot["img_"+msg.result.roll[10]];
+            $scope.roll_11 = $scope.slot["img_"+msg.result.roll[11]];
+            $scope.roll_12 = $scope.slot["img_"+msg.result.roll[12]];
+            $scope.roll_13 = $scope.slot["img_"+msg.result.roll[13]];
+            $scope.roll_14 = $scope.slot["img_"+msg.result.roll[14]];
+          } else {
+            $scope.roll = "JSON內沒有roll"
+          }
+        } else {
+          $scope.mode = "您輸入的格式有誤 或 沒輸入資料";
+          $scope.now_balance = "您輸入的格式有誤 或 沒輸入資料";
+          $scope.total_win = "您輸入的格式有誤 或 沒輸入資料";
+          $scope.roll = "您輸入的格式有誤 或 沒輸入資料";
+          $scope.data = "您輸入的格式有誤 或 沒輸入資料";
+        }
+      });
+      $scope.$watch('slot', function (){ //監聽下拉選單
+        $('#outRoll').html('');
+        console.log($scope.roll_12);
+        if($scope.slot && $scope.jsonModel){ //是否有選擇遊戲名稱 && json有沒有資料
+         if(msg && msg.result.roll){
+            $scope.roll_0 = $scope.slot["img_"+msg.result.roll[0]];
+            $scope.roll_1 = $scope.slot["img_"+msg.result.roll[1]];
+            $scope.roll_2 = $scope.slot["img_"+msg.result.roll[2]];
+            $scope.roll_3 = $scope.slot["img_"+msg.result.roll[3]];
+            $scope.roll_4 = $scope.slot["img_"+msg.result.roll[4]];
+            $scope.roll_5 = $scope.slot["img_"+msg.result.roll[5]];
+            $scope.roll_6 = $scope.slot["img_"+msg.result.roll[6]];
+            $scope.roll_7 = $scope.slot["img_"+msg.result.roll[7]];
+            $scope.roll_8 = $scope.slot["img_"+msg.result.roll[8]];
+            $scope.roll_9 = $scope.slot["img_"+msg.result.roll[9]];
+            $scope.roll_10 = $scope.slot["img_"+msg.result.roll[10]];
+            $scope.roll_11 = $scope.slot["img_"+msg.result.roll[11]];
+            $scope.roll_12 = $scope.slot["img_"+msg.result.roll[12]];
+            $scope.roll_13 = $scope.slot["img_"+msg.result.roll[13]];
+            $scope.roll_14 = $scope.slot["img_"+msg.result.roll[14]];
+          }
+        }else{
+            $scope.roll_0 = './img/init.png ';
+            $scope.roll_1 = './img/init.png ';
+            $scope.roll_2 = './img/init.png ';
+            $scope.roll_3 = './img/init.png ';
+            $scope.roll_4 = './img/init.png ';
+            $scope.roll_5 = './img/init.png ';
+            $scope.roll_6 = './img/init.png ';
+            $scope.roll_7 = './img/init.png ';
+            $scope.roll_8 = './img/init.png ';
+            $scope.roll_9 = './img/init.png ';
+            $scope.roll_10 = './img/init.png ';
+            $scope.roll_11 = './img/init.png ';
+            $scope.roll_12 = './img/init.png ';
+            $scope.roll_13 = './img/init.png ';
+            $scope.roll_14 = './img/init.png ';
+        }
+      });
+    });
+  for (var img = 0; img < 12; img++) {
+    document.getElementById("slotImg").innerHTML += '<td><img id = "img_' + img + '" src={{slot.img_' + img + '}} border="0" align="absmiddle"   width="100%"> </td>'
+  }
+  function symbol() {
+    $('#outRoll').html(
+      '['+
+      $('#roll_0 :selected').text()+','+
+      $('#roll_1 :selected').text()+','+
+      $('#roll_2 :selected').text()+','+
+      $('#roll_3 :selected').text()+','+
+      $('#roll_4 :selected').text()+','+
+      $('#roll_5 :selected').text()+','+
+      $('#roll_6 :selected').text()+','+
+      $('#roll_7 :selected').text()+','+
+      $('#roll_8 :selected').text()+','+
+      $('#roll_9 :selected').text()+','+
+      $('#roll_10 :selected').text()+','+
+      $('#roll_11 :selected').text()+','+
+      $('#roll_12 :selected').text()+','+
+      $('#roll_13 :selected').text()+','+
+      $('#roll_14 :selected').text()+']'
+    )
+    console.log();  
+  }
+</script>

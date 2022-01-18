@@ -1,0 +1,4 @@
+var SlotName = [
+        "LOl",
+        "number"
+]
